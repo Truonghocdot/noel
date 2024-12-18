@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Đếm Ngược Đến Giáng Sinh</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff6347;
+            margin-top: 50px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .countdown-container {
+            display: inline-block;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .countdown-container:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown {
+            font-size: 1.5em;
+            color: #006400;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .days-left {
+            font-size: 4em;
+            font-weight: bold;
+            color: #ff4500;
+            margin: 20px 0;
+            transition: color 0.5s ease;
+        }
+
+        .calendar {
+            margin-top: 40px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .calendar table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .calendar th,
+        .calendar td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        .calendar th {
+            background-color: #ff6347;
+            color: white;
+            font-weight: bold;
+        }
+
+        .calendar td {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .calendar td.today {
+            background-color: #ffebcd;
+            font-weight: bold;
+        }
+
+        .calendar td:hover {
+            background-color: #ffe4b5;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .countdown-container {
+                padding: 30px;
+            }
+
+            .days-left {
+                font-size: 3em;
+            }
+
+            .calendar {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .countdown-container {
+                padding: 20px;
+            }
+
+            .days-left {
+                font-size: 2.5em;
+            }
+
+            .calendar {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lịch Đếm Ngược Đến Giáng Sinh</h1>
+    <div class="countdown-container">
+        <p class="countdown">Thời gian còn lại đến Giáng Sinh:</p>
+        <div id="daysLeft" class="days-left"></div>
+    </div>
+
+    <div class="calendar">
+        <h2>Lịch Tháng 12</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>CN</th>
+                    <th>T2</th>
+                    <th>T3</th>
+                    <th>T4</th>
+                    <th>T5</th>
+                    <th>T6</th>
+                    <th>T7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td class="today">25</td>
+                    <td>26</td>
+                    <td>27</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>31</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Đặt thời gian cho Giáng Sinh (25 tháng 12, 2024)
+        var countDownDate = new Date("Dec 25, 2024 00:00:00").getTime();
+
+        // Cập nhật đồng hồ mỗi 1 giây
+        var x = setInterval(function() {
+
+            // Lấy thời gian hiện tại
+            var now = new Date().getTime();
+
+            // Tính toán khoảng thời gian còn lại
+            var distance = countDownDate - now;
+
+            // Tính số ngày còn lại
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+            // Hiển thị số ngày còn lại
+            document.getElementById("daysLeft").innerHTML = days + " ngày còn lại";
+
+            // Nếu đã đến Giáng Sinh, dừng đồng hồ và thông báo
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("daysLeft").innerHTML = "Chúc Mừng Giáng Sinh!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
